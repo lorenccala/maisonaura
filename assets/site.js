@@ -137,6 +137,26 @@
     }, { passive: true });
   }
 
+  /* ---------- Date fields: "Select date" hint while empty (shown on phones by CSS) ---------- */
+  const dateWraps = $$('input[type=date]').map(inp => {
+    const wrap = document.createElement('span');
+    wrap.className = 'date-wrap';
+    inp.before(wrap); wrap.append(inp);
+    return wrap;
+  });
+  function refreshDates() {
+    dateWraps.forEach(w => {
+      w.dataset.ph = t('pickdate');
+      w.classList.toggle('is-empty', !$('input', w).value);
+    });
+  }
+  // Document-level listeners run after the form's own handlers, so values the
+  // script fills in or clears (booking bar, departure reset) are picked up too.
+  ['input', 'change', 'submit'].forEach(ev => document.addEventListener(ev, refreshDates));
+  document.addEventListener('aura:lang', refreshDates);
+  addEventListener('pageshow', refreshDates);
+  refreshDates();
+
   /* ---------- Request form → WhatsApp ---------- */
   const form = $('#request');
   const arr = $('#arrival'), dep = $('#departure'), kids = $('#children'), ages = $('#children-ages');

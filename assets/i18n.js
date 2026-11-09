@@ -113,7 +113,8 @@ window.AURA_TEXT = {
   "top": "Torna su ↑",
   "rights": "Maison Aura Luxury Residences · Golem, Albania",
   "title_home": "Maison Aura | Un rifugio di eleganza a Golem",
-  "title_apts": "Gli appartamenti | Maison Aura"
+  "title_apts": "Gli appartamenti | Maison Aura",
+  "pickdate": "Seleziona la data"
  },
  "en": {
   "eyeres": "THE RESIDENCES",
@@ -228,7 +229,8 @@ window.AURA_TEXT = {
   "top": "Back to top ↑",
   "rights": "Maison Aura Luxury Residences · Golem, Albania",
   "title_home": "Maison Aura | A retreat of quiet elegance in Golem",
-  "title_apts": "The apartments | Maison Aura"
+  "title_apts": "The apartments | Maison Aura",
+  "pickdate": "Select date"
  },
  "sq": {
   "eyeres": "REZIDENCAT",
@@ -343,6 +345,7 @@ window.AURA_TEXT = {
   "top": "Kthehu lart ↑",
   "rights": "Maison Aura Luxury Residences · Golem, Shqipëri",
   "title_home": "Maison Aura | Qetësi dhe elegancë në Golem",
-  "title_apts": "Apartamentet | Maison Aura"
+  "title_apts": "Apartamentet | Maison Aura",
+  "pickdate": "Zgjidh datën"
  }
 };
