@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap">
-<link rel="stylesheet" href="assets/aura.css?v=20261109c">
+<link rel="stylesheet" href="assets/aura.css?v=20261109d">
 </head>
 <body data-title="title_apts">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><filter id="logo-tint" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.3 2.3 0"/><feComponentTransfer result="mark"><feFuncA type="linear" slope="1.5" intercept="-0.08"/></feComponentTransfer><feFlood flood-color="#c29878"/><feComposite operator="in" in2="mark"/></filter></defs></svg>
@@ -76,15 +76,16 @@
         <div><div class="eyebrow"><span data-t="galleryeye">INSIDE MAISON AURA</span></div><h2 data-t="gallerytitle">Beauty,<br><em>up close.</em></h2></div>
         <p data-t="gallerytext">Wood grain, woven textures, light across the furnishings. Explore Maison Aura, one photograph at a time.</p>
       </div>
-      <div class="mosaic">
-        <button type="button" class="m1" data-photo="1" data-t-aria="enlarge" aria-label="Enlarge photo"><img src="assets/interior-1.jpg" alt="Maison Aura interiors, photograph 1" data-t-alt="photo" loading="lazy"></button>
-        <button type="button" class="m2" data-photo="9" data-t-aria="enlarge" aria-label="Enlarge photo"><img src="assets/interior-9.jpg" alt="Maison Aura interiors, photograph 9" data-t-alt="photo" loading="lazy"></button>
-        <button type="button" class="m3" data-photo="3" data-t-aria="enlarge" aria-label="Enlarge photo"><img src="assets/interior-3.jpg" alt="Maison Aura interiors, photograph 3" data-t-alt="photo" loading="lazy"></button>
-        <button type="button" class="m4" data-photo="4" data-t-aria="enlarge" aria-label="Enlarge photo"><img src="assets/interior-4.jpg" alt="Maison Aura interiors, photograph 4" data-t-alt="photo" loading="lazy"></button>
-        <button type="button" class="m5" data-photo="8" data-t-aria="enlarge" aria-label="Enlarge photo"><img src="assets/interior-8.jpg" alt="Maison Aura interiors, photograph 8" data-t-alt="photo" loading="lazy"></button>
-        <button type="button" class="m6" data-photo="5" data-t-aria="enlarge" aria-label="Enlarge photo"><img src="assets/interior-5.jpg" alt="Maison Aura interiors, photograph 5" data-t-alt="photo" loading="lazy"></button>
-        <button type="button" class="m7" data-photo="7" data-t-aria="enlarge" aria-label="Enlarge photo"><img src="assets/interior-7.jpg" alt="Maison Aura interiors, photograph 7" data-t-alt="photo" loading="lazy"></button>
-        <button type="button" class="m8" data-photo="2" data-t-aria="enlarge" aria-label="Enlarge photo"><img src="assets/interior-2.jpg" alt="Maison Aura interiors, photograph 2" data-t-alt="photo" loading="lazy"></button>
+      <div class="book-cover reveal">
+        <button type="button" class="book-open" data-photo="1" aria-haspopup="dialog">
+          <span class="book-edges" aria-hidden="true"></span>
+          <img src="assets/interior-8.jpg" alt="" loading="lazy">
+          <span class="book-label">
+            <svg class="book-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 13c-4-3-10-4-17-3v26c7-1 13 0 17 3 4-3 10-4 17-3V10c-7-1-13 0-17 3Zm0 0v26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            <span class="book-title" data-t="openbook">Discover the residence</span>
+            <small data-t="bookpages">9 photographs · turn the pages</small>
+          </span>
+        </button>
       </div>
     </div>
   </section>
@@ -147,10 +148,10 @@
   <div class="legal"><span>© <span data-t="rights">Maison Aura Luxury Residences · Golem, Albania</span></span><a href="#main"><span data-t="top">Back to top ↑</span></a></div>
 </footer>
 <dialog class="lightbox" id="lightbox" aria-label="Photo">
-  <img id="lb-img" alt="">
+  <div class="lb-stage"><img id="lb-img" alt=""></div>
   <div class="lb-bar"><button type="button" id="lb-prev" data-t-aria="prev" aria-label="Previous">‹</button><span id="lb-count"></span><button type="button" id="lb-next" data-t-aria="next" aria-label="Next">›</button><button type="button" id="lb-close" data-t-aria="close" aria-label="Close">✕</button></div>
 </dialog>
-<script src="assets/i18n.js?v=20261109c"></script>
-<script src="assets/site.js?v=20261109c"></script>
+<script src="assets/i18n.js?v=20261109d"></script>
+<script src="assets/site.js?v=20261109d"></script>
 </body>
 </html>
