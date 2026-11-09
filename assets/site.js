@@ -6,6 +6,8 @@
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const WHATSAPP = '393334658601';
+  // Wait until a photo is ready to show, but never longer than `ms`.
+  const ready = (img, ms = 900) => Promise.race([img.decode ? img.decode().catch(() => {}) : Promise.resolve(), new Promise(r => setTimeout(r, ms))]);
   document.documentElement.classList.remove('no-js');
 
   /* ---------- Language ---------- */
@@ -71,7 +73,7 @@
       slideHost.insertBefore(img, before);
       slides.push(img);
     });
-    const load = img => { if (!img.src) img.src = img.dataset.src; return img.decode ? img.decode().catch(() => {}) : Promise.resolve(); };
+    const load = img => { if (!img.src) img.src = img.dataset.src; return ready(img, 3000); };
     let cur = 0;
     first.classList.add('zoom');
     load(slides[1]);
@@ -109,31 +111,58 @@
     }
   }
 
-  /* ---------- Photo viewer (all 9 interiors) ---------- */
+  /* ---------- Photo book: the 9 interiors open page by page ---------- */
   const box = $('#lightbox');
   if (box) {
-    const img = $('#lb-img');
-    let cur = 1;
+    const img = $('#lb-img'), stage = $('.lb-stage');
+    const src = n => 'assets/interior-' + n + '.jpg';
+    let cur = 1, busy = false;
     const show = n => {
       cur = (n + 8) % 9 + 1;
-      img.src = 'assets/interior-' + cur + '.jpg';
+      img.src = src(cur);
       img.alt = t('photo') + ' ' + cur;
       $('#lb-count').textContent = cur + ' / 9';
     };
+    // Turn a page: a copy of the current photo swings away like a book page
+    // (to the left going forward, to the right going back) and reveals the next one.
+    async function turn(dir) {
+      if (busy) return;
+      const next = (cur + dir + 8) % 9 + 1;
+      if (reduced.matches || !box.open) { show(next); return; }
+      busy = true;
+      const pre = new Image(); pre.src = src(next);
+      await ready(pre);
+      const page = img.cloneNode();
+      page.removeAttribute('id'); page.alt = ''; page.className = 'lb-turn';
+      Object.assign(page.style, { left: img.offsetLeft + 'px', top: img.offsetTop + 'px', width: img.offsetWidth + 'px', height: img.offsetHeight + 'px', transformOrigin: dir > 0 ? 'left center' : 'right center' });
+      stage.append(page);
+      show(next);
+      const angle = dir > 0 ? -105 : 105;
+      const flip = page.animate([
+        { transform: 'rotateY(0deg)', filter: 'brightness(1)', opacity: 1 },
+        { transform: `rotateY(${angle * 0.6}deg)`, filter: 'brightness(.75)', opacity: 1, offset: 0.6 },
+        { transform: `rotateY(${angle}deg)`, filter: 'brightness(.5)', opacity: 0 },
+      ], { duration: 850, easing: 'cubic-bezier(.45,.05,.35,1)' });
+      // Never stay locked if the animation stalls (e.g. the tab is in the background).
+      await Promise.race([flip.finished.catch(() => {}), new Promise(r => setTimeout(r, 1200))]);
+      page.remove();
+      busy = false;
+    }
     $$('[data-photo]').forEach(b => b.addEventListener('click', () => { show(+b.dataset.photo); box.showModal(); }));
-    $('#lb-prev').onclick = () => show(cur - 1);
-    $('#lb-next').onclick = () => show(cur + 1);
+    box.addEventListener('close', () => { $$('.lb-turn', stage).forEach(p => p.remove()); busy = false; });
+    $('#lb-prev').onclick = () => turn(-1);
+    $('#lb-next').onclick = () => turn(1);
     $('#lb-close').onclick = () => box.close();
     box.addEventListener('click', e => { if (e.target === box) box.close(); });
     box.addEventListener('keydown', e => {
-      if (e.key === 'ArrowRight') show(cur + 1);
-      if (e.key === 'ArrowLeft') show(cur - 1);
+      if (e.key === 'ArrowRight') turn(1);
+      if (e.key === 'ArrowLeft') turn(-1);
     });
     let sx = null;
     box.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive: true });
     box.addEventListener('touchend', e => {
       if (sx == null) return; const dx = e.changedTouches[0].clientX - sx; sx = null;
-      if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1));
+      if (Math.abs(dx) > 50) turn(dx < 0 ? 1 : -1);
     }, { passive: true });
   }
 
