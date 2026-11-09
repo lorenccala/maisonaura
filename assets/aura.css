@@ -260,3 +260,19 @@ footer a:hover{color:#fff}
 .page-head .lang a{opacity:.6;padding:4px 0;border-bottom:1px solid transparent}
 .page-head .lang a[aria-current]{opacity:1;border-color:currentColor}
 @media(max-width:980px){.page-head nav:first-child{display:flex}.page-head nav:first-child a{font-size:12px}}
+
+/* Date fields on phones: phones show an empty date field as a blank line,
+   so add a calendar icon, a "Select date" hint and a bigger tap area. */
+.date-wrap,.booking label .date-wrap,.fields .date-wrap{position:relative;display:block;font:300 17px/1.4 var(--sans);letter-spacing:normal;text-transform:none;color:var(--ink)}
+/* Let grid columns shrink below the date input's built-in width on narrow screens */
+.booking>*,.fields>*,input[type=date]{min-width:0}
+@media(max-width:980px){
+  input[type=date]{-webkit-appearance:none;appearance:none;display:block;width:100%;min-height:44px;line-height:1.4;padding-right:30px!important;font-size:17px;color:var(--ink);
+    background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a58b65' stroke-width='1.5'%3E%3Crect x='3' y='5' width='18' height='16' rx='1'/%3E%3Cpath d='M3 10h18M8 3v4M16 3v4'/%3E%3C/svg%3E") no-repeat right 2px center/20px}
+  input[type=date]::-webkit-date-and-time-value{text-align:left;margin:0}
+  /* The whole field opens the picker; the browser's own icon is hidden in favour of ours */
+  input[type=date]::-webkit-calendar-picker-indicator{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
+  .date-wrap.is-empty input[type=date]{color:transparent}
+  .date-wrap.is-empty::after{content:attr(data-ph);position:absolute;left:0;top:50%;transform:translateY(-50%);font-size:16px;color:#8a7f73;pointer-events:none}
+  .fields input[type=date]{border-bottom:1px solid var(--gold)}
+}
