@@ -2,7 +2,7 @@
 function showLanguage(){
   let stored=null;try{stored=localStorage.getItem('aura-lang')}catch{}
   const requested=location.hash.slice(1)||stored;
-  const lang=['it','en','sq'].includes(requested)?requested:'it';
+  const lang=['it','en','sq'].includes(requested)?requested:'en';
   try{localStorage.setItem('aura-lang',lang)}catch{}
   const page=document.getElementById(lang);
   document.documentElement.lang=lang;

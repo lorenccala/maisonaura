@@ -15,8 +15,8 @@
     set(v) { try { localStorage.setItem('aura-lang', v); } catch { /* private mode */ } },
   };
   const fromUrl = new URLSearchParams(location.search).get('lang');
-  let lang = LANGS.includes(fromUrl) ? fromUrl : LANGS.includes(store.get()) ? store.get() : 'it';
-  const t = k => (T[lang] && T[lang][k]) ?? T.it[k] ?? '';
+  let lang = LANGS.includes(fromUrl) ? fromUrl : LANGS.includes(store.get()) ? store.get() : 'en';
+  const t = k => (T[lang] && T[lang][k]) ?? T.en[k] ?? '';
 
   function applyLang() {
     document.documentElement.lang = lang;
