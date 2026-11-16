@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://lorenccala.github.io/maisonaura/sitemap.xml
+Sitemap: https://maisonaura.al/sitemap.xml
