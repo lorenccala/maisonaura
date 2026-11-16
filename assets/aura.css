@@ -286,3 +286,10 @@ footer a:hover{color:#fff}
 .lb-stage img{box-shadow:0 30px 60px -20px rgba(0,0,0,.6)}
 .lb-turn{position:absolute;margin:0!important;backface-visibility:hidden;will-change:transform}
 @media(max-width:980px){.book-open{aspect-ratio:4/5}.book-cover{padding:0 12px 12px 0}}
+
+/* Residence details in the apartment viewer (size/guests already shown above the name) */
+.residence-sheet .residence-meta{display:none}
+.residence-sheet>p{color:var(--muted);margin:0 0 22px}
+.residence-sheet dl{margin:0 0 6px;border-top:1px solid var(--line)}
+.residence-sheet dt{font:500 11px/1.4 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--bronze);padding-top:16px}
+.residence-sheet dd{margin:6px 0 0;padding-bottom:16px;border-bottom:1px solid var(--line);font-size:15px;color:var(--muted);line-height:1.6}

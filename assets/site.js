@@ -11,7 +11,7 @@
   document.documentElement.classList.remove('no-js');
 
   /* ---------- Language ---------- */
-  const LANGS = ['it', 'en', 'sq'];
+  const LANGS = ['it', 'en', 'sq', 'fr'];
   const store = {
     get() { try { return localStorage.getItem('aura-lang'); } catch { return null; } },
     set(v) { try { localStorage.setItem('aura-lang', v); } catch { /* private mode */ } },
@@ -275,9 +275,9 @@
   const viewer = $('#viewer');
   if (viewer) {
     const TYPES = {
-      1: { name: 'One-Bedroom Residence', meta: 'm1', desc: 'd1', photos: [['one-bedroom-1.jpg', 'ph1a'], ['one-bedroom-2.jpg', 'ph1b']] },
-      2: { name: 'Two-Bedroom Residence with Pool View', meta: 'm2', desc: 'd2', photos: [['pool-view.svg', 'ph2a']] },
-      3: { name: 'Two-Bedroom Residence with Side View', meta: 'm3', desc: 'd3', photos: [['side-bedroom-1.jpg', 'ph3a'], ['side-bedroom-2.jpg', 'ph3b']] },
+      1: { name: 'One-Bedroom Residence', meta: 'm1', sheet: 'sheet1', photos: [['one-bedroom-1.jpg', 'ph1a'], ['one-bedroom-2.jpg', 'ph1b']] },
+      2: { name: 'Two-Bedroom Residence with Pool View', meta: 'm2', sheet: 'sheet2', photos: [['pool-view.svg', 'ph2a']] },
+      3: { name: 'Two-Bedroom Residence with Side View', meta: 'm3', sheet: 'sheet3', photos: [['side-bedroom-1.jpg', 'ph3a'], ['side-bedroom-2.jpg', 'ph3b']] },
     };
     const photo = $('#viewer-img'), caption = $('#viewer-caption'), switcher = $('#photo-switch');
     let type = Number(new URLSearchParams(location.search).get('type'));
@@ -289,7 +289,8 @@
       $('#viewer-num').textContent = t('reslabel') + ' 0' + type;
       $('#viewer-meta').textContent = t(d.meta);
       $('#viewer-name').textContent = d.name;
-      $('#viewer-desc').textContent = t(d.desc);
+      // Size, description and lists come from the site's own text file (i18n.js)
+      $('#viewer-sheet').innerHTML = t(d.sheet);
       $('#viewer-choose').dataset.choose = d.name;
       const [file, label] = d.photos[shot];
       if (!photo.src.endsWith('/assets/' + file)) photo.src = 'assets/' + file;
