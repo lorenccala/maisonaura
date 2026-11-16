@@ -241,7 +241,7 @@
       location.assign(url);
     });
   }
-  function stripTags(s) { const d = document.createElement('div'); d.innerHTML = s; return d.textContent.trim(); }
+  function stripTags(s) { return new DOMParser().parseFromString(s, 'text/html').body.textContent.trim(); }
 
   // Send visitors to the form with an apartment type (and dates) already filled in.
   function goToForm(type) {

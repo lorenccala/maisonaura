@@ -6,7 +6,8 @@
   --cream:#f7f3ec;
   --sand:#eee7db;       /* soft sections */
   --line:#dcd3c6;
-  --gold:#a58b65;       /* accents, buttons */
+  --gold:#a58b65;       /* accents */
+  --gold-deep:#8a704c;  /* button background: white text stays readable (4.7:1) */
   --gold-soft:#c29878;  /* logo tint */
   --bronze:#766045;     /* small labels on light backgrounds */
   --muted:#6b6157;
@@ -26,10 +27,10 @@ em{font-style:italic;color:var(--gold)}
 section[id]{scroll-margin-top:80px}
 .eyebrow{font:500 12px/1.2 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--bronze);display:flex;align-items:center;gap:14px}
 .eyebrow:before{content:"";width:32px;height:1px;background:currentColor;flex:none}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 30px;border:1px solid var(--gold);background:var(--gold);color:#fff;font:500 13px/1.2 var(--sans);letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:background .3s,color .3s,border-color .3s;text-align:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 30px;border:1px solid var(--gold-deep);background:var(--gold-deep);color:#fff;font:500 13px/1.2 var(--sans);letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:background .3s,color .3s,border-color .3s;text-align:center}
 .btn:hover{background:var(--espresso);border-color:var(--espresso)}
 .btn.ghost{background:transparent;color:inherit;border-color:currentColor}
-.btn.ghost:hover{background:var(--gold);border-color:var(--gold);color:#fff}
+.btn.ghost:hover{background:var(--gold-deep);border-color:var(--gold-deep);color:#fff}
 .link{font:500 13px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;border-bottom:1px solid var(--gold);padding-bottom:6px;display:inline-flex;gap:10px}
 .link span{transition:transform .3s}a:hover .link span,.link:hover span{transform:translateX(4px)}
 section{padding:clamp(80px,11vw,150px) var(--pad)}
@@ -263,7 +264,7 @@ footer a:hover{color:#fff}
   /* The whole field opens the picker; the browser's own icon is hidden in favour of ours */
   input[type=date]::-webkit-calendar-picker-indicator{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
   .date-wrap.is-empty input[type=date]{color:transparent}
-  .date-wrap.is-empty::after{content:attr(data-ph);position:absolute;left:0;top:50%;transform:translateY(-50%);font-size:16px;color:#8a7f73;pointer-events:none}
+  .date-wrap.is-empty::after{content:attr(data-ph);position:absolute;left:0;top:50%;transform:translateY(-50%);font-size:16px;color:#7c7166;pointer-events:none}
   .fields input[type=date]{border-bottom:1px solid var(--gold)}
 }
 
