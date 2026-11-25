@@ -197,6 +197,9 @@ dialog.lightbox img{max-width:92vw;max-height:84vh;object-fit:contain;margin:0 a
 .viewer-photo{margin:0;position:relative;aspect-ratio:4/5;background:var(--sand);overflow:hidden}
 .viewer-photo img{width:100%;height:100%;object-fit:cover;transition:opacity .5s}
 .viewer-photo figcaption{position:absolute;left:0;bottom:0;padding:10px 16px;background:rgba(252,250,246,.92);font-size:12px;letter-spacing:.06em;color:var(--muted)}
+.viewer-arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;display:grid;place-items:center;padding:0;border:0;background:rgba(252,250,246,.88);color:var(--ink);cursor:pointer;transition:background .2s}
+.viewer-arrow:hover{background:#fff}.viewer-arrow:focus-visible{outline:2px solid var(--gold-deep);outline-offset:2px}.viewer-arrow[hidden]{display:none}
+.viewer-arrow.is-prev{left:10px}.viewer-arrow.is-next{right:10px}
 .photo-switch{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
 .photo-switch button{background:none;border:1px solid var(--line);padding:10px 16px;cursor:pointer;font-size:13px;letter-spacing:.08em}
 .photo-switch button[aria-pressed=true]{border-color:var(--gold);color:var(--bronze);background:#fff}

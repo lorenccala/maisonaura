@@ -276,7 +276,7 @@
   if (viewer) {
     const TYPES = {
       1: { name: 'One-Bedroom Residence', meta: 'm1', sheet: 'sheet1', photos: [['one-bedroom-1.jpg', 'ph1a'], ['one-bedroom-2.jpg', 'ph1b']] },
-      2: { name: 'Two-Bedroom Residence with Pool View', meta: 'm2', sheet: 'sheet2', photos: [['pool-view.svg', 'ph2a'], ['pool-view-kitchen-dining.jpg', 'ph2b'], ['pool-view-wardrobe.jpg', 'ph2c']] },
+      2: { name: 'Two-Bedroom Residence with Pool View', meta: 'm2', sheet: 'sheet2', photos: [['pool-view-kitchen-dining.jpg', 'ph2b'], ['pool-view-wardrobe.jpg', 'ph2c']] },
       3: { name: 'Two-Bedroom Residence with Side View', meta: 'm3', sheet: 'sheet3', photos: [['side-bedroom-1.jpg', 'ph3a'], ['side-bedroom-2.jpg', 'ph3b']] },
     };
     const photo = $('#viewer-img'), caption = $('#viewer-caption'), switcher = $('#photo-switch');
@@ -298,6 +298,7 @@
       caption.textContent = t(label) + ' · ' + t('illustrative');
       switcher.replaceChildren();
       switcher.hidden = d.photos.length < 2;
+      $('#viewer-prev').hidden = $('#viewer-next').hidden = d.photos.length < 2;
       d.photos.forEach(([, l], i) => {
         const b = document.createElement('button'); b.type = 'button'; b.textContent = t(l);
         b.setAttribute('aria-pressed', String(i === shot));
@@ -306,6 +307,17 @@
       });
     }
     $$('.tabs button').forEach(b => b.addEventListener('click', () => { type = +b.dataset.type; shot = 0; render(); }));
+    // Arrows and swipe move through the photos of the chosen residence
+    const step = dir => { const n = TYPES[type].photos.length; if (n < 2) return; shot = (shot + dir + n) % n; render(); };
+    $('#viewer-prev').onclick = () => step(-1);
+    $('#viewer-next').onclick = () => step(1);
+    let touchX = null;
+    photo.addEventListener('touchstart', e => { touchX = e.changedTouches[0].clientX; }, { passive: true });
+    photo.addEventListener('touchend', e => {
+      if (touchX === null) return;
+      const dx = e.changedTouches[0].clientX - touchX; touchX = null;
+      if (Math.abs(dx) > 50) step(dx < 0 ? 1 : -1);
+    }, { passive: true });
     $('#viewer-choose').addEventListener('click', e => { e.preventDefault(); goToForm(TYPES[type].name); });
     document.addEventListener('aura:lang', render);
     render();
