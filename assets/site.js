@@ -276,7 +276,7 @@
   if (viewer) {
     const TYPES = {
       1: { name: 'One-Bedroom Residence', meta: 'm1', sheet: 'sheet1', photos: [['one-bedroom-1.jpg', 'ph1a'], ['one-bedroom-2.jpg', 'ph1b']] },
-      2: { name: 'Two-Bedroom Residence with Pool View', meta: 'm2', sheet: 'sheet2', photos: [['pool-view-kitchen-dining.jpg', 'ph2b'], ['pool-view-wardrobe.jpg', 'ph2c']] },
+      2: { name: 'Two-Bedroom Residence with Pool View', meta: 'm2', sheet: 'sheet2', photos: [['pool-view.jpg', 'ph2a'], ['pool-view-kitchen-dining.jpg', 'ph2b'], ['pool-view-wardrobe.jpg', 'ph2c']] },
       3: { name: 'Two-Bedroom Residence with Side View', meta: 'm3', sheet: 'sheet3', photos: [['side-bedroom-1.jpg', 'ph3a'], ['side-bedroom-2.jpg', 'ph3b']] },
     };
     const photo = $('#viewer-img'), caption = $('#viewer-caption'), switcher = $('#photo-switch');
